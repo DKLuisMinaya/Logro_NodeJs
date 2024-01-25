@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="card card-primary col-md-10 offset-md-2">
+    <h1>Lista de Empleados</h1>
+
+  <form action="/pagarEmpleado" method="post">
+    <label for="empleadoId">Seleccionar Empleado:</label>
+    <select name="empleadoId" id="empleadoId">
+      <% empleados.forEach((empleado) => { %>
+        <option value="<%= empleado.id %>"><%= empleado.nombre %></option>
+      <% }); %>
+    </select>
+    <button type="submit">Pagar</button>
+  </form>
+  <p><a href="/total">Ver Resultados</a></p>
+  </div>
+  
+</body>
+</html>

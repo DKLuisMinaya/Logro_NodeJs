@@ -1,0 +1,36 @@
+<div class="card card-primary col-md-10 offset-md-2">
+  <table class="table table-striped projects col-md-10 offset-md-2">
+  <h1>Resultados del Salario Pagado</h1>
+
+  <% if (empleadosPagados.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Fecha de Contratación</th>
+          <th>Salario Total Pagado</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <% empleadosPagados.forEach((empleado) => { %>
+          <tr>
+            <td><%= empleado.id %></td>
+            <td><%= empleado.nombre %></td>
+            <td><%= empleado.fechaContratacion.toISOString().split('T')[0] %></td>
+            <td><%= (empleado.salario * empleado.horasTrabajadas).toFixed(2) %> USD</td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No hay empleados pagados para mostrar.</p>
+  <% } %>
+
+  <p><a href="/mostrarEmpleados">Volver a la Lista de Empleados</a></p>
+    
+  </table>
+</div>
+
+  

@@ -1,0 +1,116 @@
+
+  <div class="card card-primary col-md-10 offset-md-2">
+    <div class="card-header col-md-12">
+      <h3 class="card-title">Registro de Empleado</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form method="POST" action="/store">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Nombre de empleado</label>
+          <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail3">Fecha de contratación</label>
+            <input type="date" name="fechaContratacion" class="form-control" id="exampleInputEmail3" required max="<%= new Date().toISOString().split('T')[0] %>">
+          </div>
+
+          <label for="exampleInputEmail3">Salario</label>
+          <input type="number" name="salario" class="form-control" id="exampleInputEmail3" 
+                 pattern="[0-9]+([\.,][0-9]+)?" title="Ingrese un número decimal válido" 
+                 required min="0">
+          <div class="form-group">
+            <label for="exampleInputEmail3">Horas trabajadas</label>
+            <input type="number" name="horasTrabajadas" class="form-control" id="exampleInputEmail3" required min="0">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail3">Departamento</label>
+            <input type="text" name="departamento" class="form-control" id="exampleInputEmail3" required>
+          </div>
+
+      </div>
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Registrar</button>
+      </div>
+    </form>
+</div>
+<div class="row mb-3">
+  <div class="col-md-10 offset-md-2">
+      <form  action="">
+          <div class="input-group">
+              <input name="buscar" type="text" class="form-control form-control-lg" placeholder="Buscar por departamento">
+              <div class="input-group-append">
+                  <button type="submit" class="btn btn-lg btn-default">
+                      <i class="fa fa-search"></i>
+                  </button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+
+<table class="table table-striped projects col-md-10 offset-md-2 mt-5 "  >
+  <thead >
+      <tr>
+          <th style="width: 1%">
+              #
+          </th>
+          <th style="width: 20%">
+          Nombre        
+          </th>
+          <th style="width: 20%">
+              Fecha de contratacion
+          </th>
+          <th style="width: 20%">
+              salario
+          </th>
+          <th style="width: 20%">
+             horas trabajadas
+          </th>
+          <th style="width: 20%">
+              departamento
+          </th>
+
+      </tr>
+  </thead>
+  <tbody>
+    <% resultados.forEach((empleados)=>{%>
+      <tr>
+          <td>
+            <%=empleados.id%>
+          </td>
+          <td>
+            <%=empleados.nombre%>
+
+          </td>
+          <td>
+            <% const fechaContratacion = new Date(empleados.fechaContratacion); %>
+            <%= fechaContratacion.toLocaleDateString('es-ES', {day: 'numeric',month: 'numeric', year: 'numeric',   }) %>
+            
+
+           </td>
+           <td>
+            <%=empleados.salario%>
+
+           </td>
+           <td>
+            <%=empleados.horasTrabajadas%>
+
+           </td>
+           <td>
+            <%=empleados.departamento%>
+
+           </td>
+
+
+      </tr>
+
+
+<%})%>
+  </tbody>
+</table>
+    
